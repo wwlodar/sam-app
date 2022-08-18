@@ -15,7 +15,7 @@ Resources:
   VerifyFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: lambdas/lambda)bot
+      CodeUri: lambdas/lambda_bot
       Handler: index.handler
       Runtime: nodejs14.x
       Architectures:
@@ -27,6 +27,7 @@ Resources:
             Action:
               - "lambda:InvokeFunction"
               - "lambda:ListFunctions"
+              - "s3:PutObject"
             Resource: '*'
 
 Outputs:
