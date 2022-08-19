@@ -4,7 +4,6 @@ def lambda_handler(event, context):
     body = json.loads(event['body'])
 
     signature = event['headers']['x-signature-ed25519']
-    timestamp = event['headers']['x-signature-timestamp']
     return command_handler(body)
 
 
