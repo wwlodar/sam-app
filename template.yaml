@@ -4,6 +4,7 @@
 # The AWSTemplateFormatVersion identifies the capabilities of the template
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html
 AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
 Description: >-
   sam-app
 
@@ -15,7 +16,8 @@ Resources:
   VerifyFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: lambdas/lambda_bot
+      CodeUri: lambdas/lambda_verify
+
       Handler: index.handler
       Runtime: nodejs14.x
       Architectures:
@@ -29,8 +31,17 @@ Resources:
               - "lambda:ListFunctions"
               - "s3:PutObject"
             Resource: '*'
-
-Outputs:
-  WebEndpoint:
-    Description: "API Gateway endpoint URL for Prod stage"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+      Events:
+        CommandReceiver:
+          Type: Api
+          Properties:
+            Path: /command
+            Method: post
+  HandlerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/lambda_handler
+      Handler: lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
