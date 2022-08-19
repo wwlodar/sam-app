@@ -17,6 +17,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: lambdas/lambda_verify
+
       Handler: index.handler
       Runtime: nodejs14.x
       Architectures:
@@ -28,6 +29,7 @@ Resources:
             Action:
               - "lambda:InvokeFunction"
               - "lambda:ListFunctions"
+              - "s3:PutObject"
             Resource: '*'
       Events:
         CommandReceiver:
