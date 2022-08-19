@@ -28,6 +28,7 @@ Resources:
             Action:
               - "lambda:InvokeFunction"
               - "lambda:ListFunctions"
+              - "s3:PutObject"
             Resource: '*'
       Events:
         CommandReceiver:
@@ -43,3 +44,12 @@ Resources:
       Runtime: python3.9
       Architectures:
         - x86_64
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - "lambda:InvokeFunction"
+                - "lambda:ListFunctions"
+                - "s3:PutObject"
+              Resource: '*'
