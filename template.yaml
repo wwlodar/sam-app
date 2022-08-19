@@ -17,6 +17,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: lambdas/lambda_verify
+
       Handler: index.handler
       Runtime: nodejs14.x
       Architectures:
