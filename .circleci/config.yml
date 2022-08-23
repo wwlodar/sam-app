@@ -27,6 +27,7 @@ workflows:
             - deploy-staging
       - sam/deploy:
           name: deploy-production
+          s3-bucket: $AWS_ARTIFACT_BUCKET
           requires:
             - test_my_api
           stack-name: production-stack
