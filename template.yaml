@@ -26,6 +26,7 @@ Resources:
           Statement:
           - Effect: "Allow"
             Action:
+              - "lambda:InvokeAsync"
               - "lambda:InvokeFunction"
               - "lambda:ListFunctions"
               - "s3:PutObject"
