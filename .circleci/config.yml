@@ -19,7 +19,7 @@ workflows:
     jobs:
       - sam/deploy:
           name: deploy-staging
-          s3-bucket: $AWS_ARTIFACT_BUCKET
+          s3-bucket: $AWS_ARTIFACT_BUCKET_STAGING
           stack-name: staging-stack
           template: template.yaml
       - test_my_api:
@@ -27,7 +27,7 @@ workflows:
             - deploy-staging
       - sam/deploy:
           name: deploy-production
-          s3-bucket: $AWS_ARTIFACT_BUCKET
+          s3-bucket: $AWS_ARTIFACT_BUCKET_PRODUCTION
           requires:
             - test_my_api
           stack-name: production-stack
