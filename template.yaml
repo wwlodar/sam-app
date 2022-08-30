@@ -31,6 +31,8 @@ Resources:
               - "lambda:ListFunctions"
               - "s3:PutObject"
             Resource: 'arn:aws:lambda:eu-central-1:654863897714:function:sam-app-VerifyFunction-yS0QOvH6oDXj/*'
+        - S3WritePolicy:
+            BucketName: aws-sam-cli-managed-dev
       Events:
         CommandReceiver:
           Type: Api
@@ -54,3 +56,5 @@ Resources:
                 - "lambda:ListFunctions"
                 - "s3:PutObject"
               Resource: '*'
+        - S3WritePolicy:
+            BucketName: aws-sam-cli-managed-prod
