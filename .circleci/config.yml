@@ -31,7 +31,7 @@ workflows:
             - test_my_api
           stack-name: production-stack
           template: template.yaml
-          s-3 bucket: aws-sam-cli-managed-prod
+          s3-bucket: aws-sam-cli-managed-prod
           filters:
             branches:
               only:
