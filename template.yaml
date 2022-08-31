@@ -26,10 +26,13 @@ Resources:
           Statement:
           - Effect: "Allow"
             Action:
+              - "lambda:InvokeAsync"
               - "lambda:InvokeFunction"
               - "lambda:ListFunctions"
               - "s3:PutObject"
             Resource: 'arn:aws:lambda:eu-central-1:654863897714:function:sam-app-VerifyFunction-yS0QOvH6oDXj/*'
+        - S3WritePolicy:
+            BucketName: aws-sam-cli-managed-dev-1529rn1044pv2
       Events:
         CommandReceiver:
           Type: Api
@@ -53,3 +56,5 @@ Resources:
                 - "lambda:ListFunctions"
                 - "s3:PutObject"
               Resource: '*'
+        - S3WritePolicy:
+            BucketName: aws-sam-cli-managed-prod-1529rn1044pv2
