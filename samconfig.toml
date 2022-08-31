@@ -3,7 +3,7 @@ version = 0.1
 [staging.deploy]
 [staging.deploy.parameters]
 stack_name = "staging-app01"
-s3_bucket = "aws-sam-cli-managed-dev"
+s3_bucket = "aws-sam-cli-managed-dev-1529rn1044pv2"
 s3_prefix = "staging-app"
 region = "eu-central-1"
 confirm_changeset = true
@@ -14,7 +14,7 @@ parameter_overrides = "Env=\"stag\""
 [production.deploy]
 [production.deploy.parameters]
 stack_name = "production-app01"
-s3_bucket = "aws-sam-cli-managed-prod"
+s3_bucket = "aws-sam-cli-managed-prod-1529rn1044pv2"
 s3_prefix = "production-app"
 region = "eu-central-1"
 confirm_changeset = true

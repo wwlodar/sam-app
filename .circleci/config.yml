@@ -19,7 +19,7 @@ workflows:
     jobs:
       - sam/deploy:
           name: deploy-staging
-          s3-bucket: aws-sam-cli-managed-dev
+          s3-bucket: aws-sam-cli-managed-dev-1529rn1044pv2
           stack-name: staging-stack
           template: template.yaml
       - test_my_api:
@@ -31,7 +31,7 @@ workflows:
             - test_my_api
           stack-name: production-stack
           template: template.yaml
-          s3-bucket: aws-sam-cli-managed-prod
+          s3-bucket: aws-sam-cli-managed-prod-1529rn1044pv2
           filters:
             branches:
               only:
