@@ -1,16 +1,4 @@
 import json
-import boto3
-
-client = boto3.client('lambda', region_name='eu-central-1')
-response = client.list_functions()
-
-
-def invoke_lambda(payload):
-    return boto3.client('lambda').invoke(
-        FunctionName='FunctionB',
-        InvocationType='Event',
-        Payload='some_data'.encode('UTF-8')
-    )
 
 def lambda_handler(event, context):
     body = json.loads(event['body'])
