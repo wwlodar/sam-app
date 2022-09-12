@@ -9,7 +9,6 @@ def invoke_lambda(name, payload):
     return boto3.client('lambda').invoke(
         FunctionName=name,
         InvocationType='Event',
-        Payload=payload.encode('UTF-8')
     )
 
 def lambda_handler(event):
