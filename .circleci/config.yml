@@ -23,7 +23,7 @@ jobs:
           name: Running tests
           command: |
             . venv/bin/activate 
-            pytest
+            pytest tests/test.py
 
 workflows:
   test_and_deploy:
