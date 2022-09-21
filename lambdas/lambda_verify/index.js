@@ -35,7 +35,7 @@ exports.handler = async (event) => {
   const stackName = process.env.STACK_NAME.split('-').slice(0, 3).join('-')
   const funcs = await lambda.listFunctions().promise();
   const commandHandlerLambda = funcs.Functions.find(
-    l => (l.FunctionName.includes('CommandHandler') && l.FunctionName.includes(stackName))
+    l => (l.FunctionName.includes('HandlerFunction') && l.FunctionName.includes(stackName))
   )
 
   if (commandHandlerLambda) {
