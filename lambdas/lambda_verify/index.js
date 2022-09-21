@@ -1,4 +1,7 @@
 const nacl = require('tweetnacl');
+var AWS = require('aws-sdk');
+AWS.config.region = 'eu-west-1';
+var lambda = new AWS.Lambda();
 
 exports.handler = async (event) => {
   // Checking signature (requirement 1.)
