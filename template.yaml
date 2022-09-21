@@ -31,8 +31,6 @@ Resources:
               - "lambda:ListFunctions"
               - "s3:PutObject"
             Resource: 'arn:aws:lambda:eu-central-1:654863897714:function:sam-app-VerifyFunction-yS0QOvH6oDXj/*'
-        - S3WritePolicy:
-            BucketName: aws-sam-cli-managed-dev-1529rn1044pv2
       Events:
         CommandReceiver:
           Type: Api
@@ -56,5 +54,37 @@ Resources:
                 - "lambda:ListFunctions"
                 - "s3:PutObject"
               Resource: '*'
-        - S3WritePolicy:
-            BucketName: aws-sam-cli-managed-prod-1529rn1044pv2
+  ResponseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/response
+      Handler: lambda_response
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - "lambda:InvokeFunction"
+                - "lambda:ListFunctions"
+                - "s3:PutObject"
+              Resource: '*'
+  SearchFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambdas/search
+      Handler: lambda_search
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Policies:
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - "lambda:InvokeFunction"
+                - "lambda:ListFunctions"
+                - "s3:PutObject"
+              Resource: '*'

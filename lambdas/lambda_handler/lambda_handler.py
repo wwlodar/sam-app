@@ -1,27 +1,22 @@
 import json
+import boto3
 
-def lambda_handler(event, context):
+client = boto3.client('lambda', region_name='eu-central-1')
+response = client.list_functions()
+
+
+def invoke_lambda(name, payload):
+    return boto3.client('lambda').invoke(
+        FunctionName=name,
+        InvocationType='Event',
+        Payload=payload,
+    )
+
+def lambda_handler(event):
     body = json.loads(event['body'])
 
-    signature = event['headers']['x-signature-ed25519']
-    return command_handler(body)
-
-
-def command_handler(body):
-  command = body['data']['name']
-
-  if command == 'bleb':
-    return {
-      'statusCode': 200,
-      'body': json.dumps({
-        'type': 4,
-        'data': {
-          'content': 'Hello, World.',
-        }
-      })
-    }
-  else:
-    return {
-      'statusCode': 400,
-      'body': json.dumps('unhandled command')
-    }
+    command = body['data']['name']
+    if command == 'response':
+        invoke_lambda('ResponseFunction', body)
+    if command == 'search':
+        invoke_lambda('SearchFunction', body)
