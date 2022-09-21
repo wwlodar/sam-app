@@ -1,5 +1,3 @@
-import boto3
-import botocore
 from lambdas import lambda_verify
 import json
 import os
@@ -25,8 +23,7 @@ def event(request):
 
 class TestMethodNotAllowed:
 
-    @pytest.mark.parametrize(
-        'event', ['405-get.json'], indirect=True)
+    @pytest.mark.parametrize('event', ['405-get.json'], indirect=True)
     def test_405_get(self, event, mock_context):
         '''Test a GET event.'''
 
