@@ -28,6 +28,7 @@ jobs:
 workflows:
   test_and_deploy:
     jobs:
+      - test_my_api
       - sam/deploy:
           name: deploy-staging
           s3-bucket: aws-sam-cli-managed-dev-1529rn1044pv2
