@@ -33,9 +33,8 @@ workflows:
           s3-bucket: aws-sam-cli-managed-dev-1529rn1044pv2
           stack-name: staging-stack
           template: template.yaml
-      - test_my_api:
           requires:
-            - deploy-staging
+            - test_my_api
       - sam/deploy:
           name: deploy-production
           requires:
