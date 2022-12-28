@@ -3,6 +3,7 @@ const nacl = require('tweetnacl');
 exports.handler = async (event) => {
   // Checking signature (requirement 1.)
   // Your public key can be found on your application in the Developer Portal
+  console.log(event)
   const PUBLIC_KEY = process.env.PUBLIC_KEY;
   const signature = event.headers['x-signature-ed25519']
   const timestamp = event.headers['x-signature-timestamp'];
