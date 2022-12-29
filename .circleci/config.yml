@@ -24,22 +24,20 @@ jobs:
           command: |
             . venv/bin/activate 
             pytest tests/test.py
-  build_and_deploy:
-      - run: sam build -u
-      - run: sam deploy
+            
 
 workflows:
   test_and_deploy:
     jobs:
       - test_my_api
-      - build_and_deploy:
+      - sam/deploy:
           name: deploy-staging
           s3-bucket: aws-sam-cli-managed-dev-1529rn1044pv2
           stack-name: staging-stack
           template: template.yaml
           requires:
             - test_my_api
-      - build_and_deploy:
+      - sam/deploy:
           name: deploy-production
           requires:
             - test_my_api
