@@ -1,6 +1,9 @@
 import json
+import logging
+
 
 def lambda_handler(event, context):
+    logging.log(event)
     body = json.loads(event['body'])
 
     signature = event['headers']['x-signature-ed25519']
@@ -8,6 +11,7 @@ def lambda_handler(event, context):
 
 
 def command_handler(body):
+
   command = body['data']['name']
 
   if command == 'bleb':

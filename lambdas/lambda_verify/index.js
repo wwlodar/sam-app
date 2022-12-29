@@ -6,6 +6,7 @@ var lambda = new AWS.Lambda();
 exports.handler = async (event) => {
   // Checking signature (requirement 1.)
   // Your public key can be found on your application in the Developer Portal
+  console.log(event)
   const PUBLIC_KEY = process.env.PUBLIC_KEY;
   const signature = event.headers['x-signature-ed25519'];
   const timestamp = event.headers['x-signature-timestamp'];
@@ -37,6 +38,7 @@ exports.handler = async (event) => {
 
   const stackName = process.env.STACK_NAME.split('-').slice(0, 3).join('-')
   const funcs = await lambda.listFunctions().promise();
+  console.log(funcs)
   const commandHandlerLambda = funcs.Functions.find(
     l => (l.FunctionName.includes('HandlerFunction') && l.FunctionName.includes(stackName))
   )

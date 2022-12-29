@@ -12,8 +12,11 @@ def invoke_lambda(name, payload):
         Payload=payload,
     )
 
+
 def lambda_handler(event):
+    print(event)
     body = json.loads(event['body'])
+    print(body)
 
     command = body['data']['name']
     if command == 'response':
