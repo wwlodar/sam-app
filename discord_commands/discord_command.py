@@ -1,15 +1,19 @@
-from discord.ext import commands
+import os
+import discord
 
-bot = commands.Bot(command_prefix='$')
+TOKEN = os.getenv('DISCORD_TOKEN')
 
-@bot.command()
-async def test(ctx):
-    pass
 
-# or:
+class MyClient(discord.Client):
+    async def on_ready(self):
+        print(f'Logged on as {self.user}!')
 
-@commands.command()
-async def test(ctx):
-    pass
+    async def on_message(self, message):
+        print(f'Message from {message.author}: {message.content}')
 
-bot.add_command(test)
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = MyClient(intents=intents)
+client.run(TOKEN)
