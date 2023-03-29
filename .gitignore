@@ -1,5 +1,6 @@
 node_modules
 *.pyc
+.pytest_cache
 .idea
 *.iml
 .vscode
@@ -9,3 +10,4 @@ build
 *.egg-info
 myvenv/
 myvenv
+.ds_store

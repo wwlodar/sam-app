@@ -9,7 +9,7 @@ def lambda_handler(event, context):
     signature = event['headers']['x-signature-ed25519']
     return command_handler(body)
 
-
+# add CORS for response
 def command_handler(body):
 
   command = body['data']['name']
